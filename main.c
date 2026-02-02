@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stdint.h> // Recommended for fixed-width types like uint8_t
+#include <stdint.h> // for uint8_t... idk, the AI recommended me this
 
 int main() {
     // Using an unsigned fixed-width integer type is crucial 
