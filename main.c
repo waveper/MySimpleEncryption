@@ -18,16 +18,13 @@ char decimal_to_hex(int decimal_digit) { //convert single digit decimal to hex
 }
 
 void to_bitwise(char* buffer, size_t size) {
-  size_t length; // length and characters index
-  unsigned int idx = 0;
+  size_t length = strlen(buffer); // get length
   unsigned int charde; //characters after turn into decimal
   char output[1000]; //what??, 1000?.... yes...
   int bitwised;
   char hexed[1000];
 
-  length = strlen(buffer);
-
-  for (length) {
+  for (size_t idx = 0; idx < length; idx++) {
     charde = (int)buffer[idx];
     bitwised = ~charde;
     hexed = decimal_to_hex(bitwised);
@@ -37,7 +34,7 @@ void to_bitwise(char* buffer, size_t size) {
 }
 
 // all error are appearing for sure
-int main() {
+int main(void) {
     // testing
     char out = to_bitwise("hello?");
     printf("Output: %d\n", out);
