@@ -1,24 +1,27 @@
 #include <stdio.h>
 #include <stdint.h> // for uint8_t... idk, the AI recommended me this
 
+// this is bitwise not encoder
+// input output to the CLI
+
+void to_bitwise(char* buffer, size_t size) {
+  size_t length; // length and characters index
+  unsigned int idx = 0;
+  unsigned int charde; //characters after turn into decimal
+  char output[1000]; //what??, 1000?.... yes...
+  int bitwised;
+
+  length = strlen(buffer);
+
+  for (length) {
+    charde = (int)buffer[idx];
+    bitwised = ~charde
+
+    idx++;
+  }
+}
+
 int main() {
-    // Using an unsigned fixed-width integer type is crucial 
-    // to avoid issues with signed integers and two's complement representation.
-    uint8_t original_data = 5; // Binary: 00000101
-    uint8_t encoded_data;
-    uint8_t decoded_data;
-
-    // Encoding (Bitwise NOT operation)
-    encoded_data = ~original_data; // Binary: 11111010
-    // We cast to uint8_t because the result of the ~ operator is automatically promoted to an int.
-    encoded_data = (uint8_t)~original_data; 
-
-    // Decoding (Applying the same Bitwise NOT operation reverses the process)
-    decoded_data = (uint8_t)~encoded_data; // Binary: 00000101
-
-    printf("Original data: %u\n", original_data);
-    printf("Encoded data: %u\n", encoded_data);
-    printf("Decoded data: %u\n", decoded_data);
-
+    // not working on yet
     return 0;
 }
