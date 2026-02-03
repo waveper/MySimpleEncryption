@@ -11,6 +11,7 @@ input/output to the CLI
 // also this code is not entirely vibe-codded
 
 char *to_bitwise(const char *input) {
+  if (!input) return NULL; // if input was something not a thing, returm null
   size_t length = strlen(input); // get length
   unsigned int charde; //characters after turn into decimal
   char *output[1000]; //what??, 1000?.... yes...

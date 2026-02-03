@@ -5,7 +5,7 @@ TARGET = main
 
 .PHONY: all clean
 
-all: $(SRC)
+all: $(TARGET)
 
 $(TARGET): $(SRC)
 	$(CC) $(CFLAGS) -o $@ $^
