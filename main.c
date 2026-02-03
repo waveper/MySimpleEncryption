@@ -7,11 +7,11 @@ this is bitwise not encoder
 input/output to the CLI
 */
 
-char to_bitwise(char* buffer, size_t size) {
+char *to_bitwise(char* buffer, size_t size) {
   size_t length = strlen(buffer); // get length
   unsigned int charde; //characters after turn into decimal
   char output[1000]; //what??, 1000?.... yes...
-  int bitwised;
+  unsigned int bitwised;
   char hexed[3]; // for null-terminator
 
   for (size_t idx = 0; idx < length; idx++) {
@@ -24,8 +24,8 @@ char to_bitwise(char* buffer, size_t size) {
 }
 
 // all error are appearing for sure
-int main(int argc, char *argc) { // input from terminal
-    char out[1000];
+int main(int argc, char *argv) { // input from terminal
+    char *out[1000];
     out = to_bitwise(argv[1], sizeof(argv[1]));
     printf("Output: %d\n", out);
     return 0;
