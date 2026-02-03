@@ -2,8 +2,10 @@
 #include <stdint.h> // for uint8_t... idk, the AI recommended me this
 #include <string.h>
 
-// this is bitwise not encoder
-// input output to the CLI
+/*
+this is bitwise not encoder
+input/output to the CLI
+*/
 
 char to_bitwise(char* buffer, size_t size) {
   size_t length = strlen(buffer); // get length
@@ -22,10 +24,9 @@ char to_bitwise(char* buffer, size_t size) {
 }
 
 // all error are appearing for sure
-int main(void) {
-    // testing
+int main(int argc, char *argc) { // input from terminal
     char out[1000];
-    out = to_bitwise("hello?", sizeof("hello?"));
+    out = to_bitwise(argv[1], sizeof(argv[1]));
     printf("Output: %d\n", out);
     return 0;
 }
