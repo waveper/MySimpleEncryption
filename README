@@ -1,30 +1,6 @@
 My Simple Encryption?
 
 not really.. just a Bitwise not encoder
+input/output from terminal
 
-___How the Code will be___
-//just a concept
-
-#include something
-
-inside function (text_from_user) {
-
-init output string; 
-
-Check the length of the string(not including the null-terminator);
-
-loop of (length_of_string) {
-turn text_from_user[char index] into decimal{charde};
-bitwise_not_deci = bitwise-not(charde);
-add bitwise_not_deci to output;
-idx++; (char index)
-}
-return output;
-}
-
-//start
-int main(void) {
-Input string from user;
-char output = encode(input);
-printf("Output : %s/n", output);
-}
+also, it not really working yet

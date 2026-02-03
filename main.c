@@ -5,7 +5,7 @@
 // this is bitwise not encoder
 // input output to the CLI
 
-void to_bitwise(char* buffer, size_t size) {
+char to_bitwise(char* buffer, size_t size) {
   size_t length = strlen(buffer); // get length
   unsigned int charde; //characters after turn into decimal
   char output[1000]; //what??, 1000?.... yes...
@@ -18,12 +18,14 @@ void to_bitwise(char* buffer, size_t size) {
     sprintf(hexed, "%02X", bitwised); // convert into hex
     strcat(output, hexed);
   }
+  return output;
 }
 
 // all error are appearing for sure
 int main(void) {
     // testing
-    char out = to_bitwise("hello?");
+    char out[1000];
+    out = to_bitwise("hello?", sizeof("hello?"));
     printf("Output: %d\n", out);
     return 0;
 }
