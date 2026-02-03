@@ -14,8 +14,8 @@ char *to_bitwise(char* buffer, size_t size) {
   unsigned int bitwised;
   char hexed[3]; // for null-terminator
 
-  for (size_t idx = 0; idx < length; idx++) {
-    charde = (int)buffer[idx];
+  for (size_t i = 0; i < length; ++i) {
+    charde = (int)buffer[i];
     bitwised = ~charde;
     sprintf(hexed, "%02X", bitwised); // convert into hex
     strcat(output, hexed);
