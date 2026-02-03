@@ -6,19 +6,21 @@
 /*
 this is bitwise not encoder
 input/output to the CLI
+likely turn text into bitwise-notted hex
 */
 
 // also this code is not entirely vibe-codded
 
 char *to_bitwise(const char *input) {
   if (!input) return NULL; // if input was something not a thing, returm null
-  size_t length = strlen(input); // get length
-  unsigned int charde; //characters after turn into decimal
+
+  size_t len = strlen(input); // getting length
+
   char *output[1000]; //what??, 1000?.... yes...
 
-  for (size_t i = 0; i < length; ++i) {
-    charde = (unsigned char)input[i];
-    unsigned int bitwised = ~charde & 0xFFu; // no idea, AI reccommend me this
+  for (size_t i = 0; i < len; ++i) {
+    unsigned char chari = (unsigned char)input[i];
+    unsigned int bitwised = ~chari & 0xFFu; // no idea, AI reccommend me this
     snprintf(output + i * 2, 3, "%02X", bitwised); // the hell?
   }
   return output;
@@ -38,6 +40,6 @@ int main(int argc, char *argv[]) { // input from terminal
   }
 
   printf("Output: %s\n", encoded);
-  free(encoded);
+  free(encoded); // free() my soul /j
   return 0;
 }
