@@ -8,18 +8,17 @@ this is bitwise not encoder
 input/output to the CLI
 */
 
+// also this code is not entirely vibe-codded
+
 char *to_bitwise(const char *input) {
   size_t length = strlen(input); // get length
   unsigned int charde; //characters after turn into decimal
-  char output[1000]; //what??, 1000?.... yes...
-  unsigned int bitwised;
-  char hexed[3]; // for null-terminator
+  char *output[1000]; //what??, 1000?.... yes...
 
   for (size_t i = 0; i < length; ++i) {
-    charde = (int)input[i];
-    bitwised = ~charde;
-    sprintf(hexed, "%02X", bitwised); // convert into hex
-    strcat(output, hexed);
+    charde = (unsigned char)input[i];
+    unsigned int bitwised = ~charde & 0xFFu; // no idea, AI reccommend me this
+    snprintf(output + i * 2, 3, "%02X", bitwised); // the hell?
   }
   return output;
 }
