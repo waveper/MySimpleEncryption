@@ -18,6 +18,7 @@ char *to_bitwise(const char *input) {
   size_t out_len = len * 2 + 1; // getting output length
 
   char *output = malloc(out_len);
+  if (!output) return NULL;
 
   for (size_t i = 0; i < len; ++i) {
     unsigned char chari = (unsigned char)input[i];
@@ -36,6 +37,8 @@ int main(int argc, char *argv[]) { // input from terminal
     fprintf(stderr, "Usage: %s <text-to-encode>\n", argv[0]);
     return 1;
   }
+
+  // TODO: joining all command line arguments without user need to double quoted it
 
   char *encoded = to_bitwise(argv[1]);
   if (!encoded) {
