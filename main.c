@@ -13,14 +13,16 @@ likely turn text into bitwise-notted hex
 
 char *to_bitwise(const char *input) {
   if (!input) return NULL; // if input was something not a thing, returm null
-
+;
   size_t len = strlen(input); // getting length
+  size_t out_len = len * 2 + 1; // getting output length
 
-  char *output[1000]; //what??, 1000?.... yes...
+  char *output = malloc(out_len);
 
   for (size_t i = 0; i < len; ++i) {
     unsigned char chari = (unsigned char)input[i];
-    unsigned int bitwised = ~chari & 0xFFu; // no idea, AI reccommend me this
+    unsigned int bitwised = (~chari) & 0xFFu; // no idea, AI reccommend me this
+    
     snprintf(output + i * 2, 3, "%02X", bitwised); // the hell?
   }
   return output;
