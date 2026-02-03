@@ -25,6 +25,8 @@ char *to_bitwise(const char *input) {
     
     snprintf(output + i * 2, 3, "%02X", bitwised); // the hell?
   }
+  output[out_len - 1] = '\0'; // add null-terminator at the end
+
   return output;
 }
 
