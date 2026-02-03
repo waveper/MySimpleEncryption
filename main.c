@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdint.h> // for uint8_t... idk, the AI recommended me this
 #include <string.h>
+#include <stdlib.h>
 
 /*
 this is bitwise not encoder
@@ -25,7 +26,16 @@ char *to_bitwise(char* buffer, size_t size) {
 
 // all error are appearing for sure
 int main(int argc, char *argv[]) { // input from terminal
-    char *encoded = to_bitwise(argv[1]);
-    printf("Output: %s\n", encoded);
-    return 0;
+  if (argc < 2) {
+    fprintf(stderr, "Usage: %s <text-to-encode>", argv[0]);
+    return 1;
+  }
+
+  char *encoded = to_bitwise(argv[1]);
+  if (!encoded) {
+    fprintf(stderr, "Error: idk whats the cause\n");
+    return 2;
+  }
+  printf("Output: %s\n", encoded);
+  return 0;
 }
