@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stdint.h> // for uint8_t... idk, the AI recommended me this
+#include <stdint.h> // include
 #include <string.h>
 #include <stdlib.h>
 
@@ -8,15 +8,15 @@ this is bitwise not encoder
 input/output to the CLI
 */
 
-char *to_bitwise(char* buffer, size_t size) {
-  size_t length = strlen(buffer); // get length
+char *to_bitwise(const char *input) {
+  size_t length = strlen(input); // get length
   unsigned int charde; //characters after turn into decimal
   char output[1000]; //what??, 1000?.... yes...
   unsigned int bitwised;
   char hexed[3]; // for null-terminator
 
   for (size_t i = 0; i < length; ++i) {
-    charde = (int)buffer[i];
+    charde = (int)input[i];
     bitwised = ~charde;
     sprintf(hexed, "%02X", bitwised); // convert into hex
     strcat(output, hexed);
@@ -36,6 +36,7 @@ int main(int argc, char *argv[]) { // input from terminal
     fprintf(stderr, "Error: idk whats the cause\n");
     return 2;
   }
+
   printf("Output: %s\n", encoded);
   return 0;
 }
