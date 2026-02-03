@@ -27,7 +27,7 @@ char *to_bitwise(const char *input) {
 // all error are appearing for sure
 int main(int argc, char *argv[]) { // input from terminal
   if (argc < 2) {
-    fprintf(stderr, "Usage: %s <text-to-encode>", argv[0]);
+    fprintf(stderr, "Usage: %s <text-to-encode>\n", argv[0]);
     return 1;
   }
 
@@ -38,5 +38,6 @@ int main(int argc, char *argv[]) { // input from terminal
   }
 
   printf("Output: %s\n", encoded);
+  free(encoded);
   return 0;
 }
