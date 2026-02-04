@@ -5,6 +5,7 @@
 
 /*
 this is bitwise-not encoder(decoder later)
+it's not really a secure encryption function, but i will combine XOR encrytion for more security
 input/output to the CLI
 likely turn text into bitwise-notted hex
 */
@@ -54,17 +55,20 @@ int main(int argc, char *argv[]) { // input from terminal
     return 2;
   }
 
-  joined_argc[0] = '\0'; // start as empty string
+  char *p = joined_argc;
   for (int i = 1; i < argc; i++) {
-    strcat(joined_argc, argv[i]);
+    size_t l = strlen(argv[i]);
+    memcpy(p, argv[i], l);
+    p += l;
     if (i < argc - 1) {
-      strcat(joined_argc, " ");
+      *p++ = ' ';
     }
   }
 
   char *encoded = to_bitwise_hex(joined_argc);
   if (!encoded) {
     fprintf(stderr, "Error: idk whats the cause\n");
+    free(joined_argc);
     return 2;
   }
 
