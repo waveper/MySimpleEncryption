@@ -44,6 +44,12 @@ int main(int argc, char *argv[]) { // input from terminal
   }
 
   printf("Total arguments: %d\n", total_argc_len); // testing
+  
+  char *joined_argc = malloc(total_argc_len);
+  if (!joined_argc) {
+    fprintf(stderr, "Error: failed join arguments malloc\n"); // finally, a reason ful error
+    return 2;
+  }
 
   // TODO: joining all command line arguments without user need to double quoted it
 
