@@ -40,7 +40,7 @@ char *to_bitwise_hex(const char *input) {
 int main(int argc, char *argv[]) { // input from terminal
   if (argc < 2) {
     fprintf(stderr, "Usage: %s <options> <text-to-encode>\n", argv[0]);
-    fprintf(stderr, "-d or --decode   decoding bitwised-not hex to text\n");
+    fprintf(stderr, "-d or --decode   decoding bitwised-not hex back to text(double hex, support spaces)\n");
     return 1;
   }
 
@@ -63,12 +63,12 @@ int main(int argc, char *argv[]) { // input from terminal
 
   // joining the command line arguments
   int total_chars = 0;
-  for (int i = 1; i < argc; i++) {
-    total_chars += strlen(argv[i]);
+  for (int i = join_start; i < argc; i++) {
+    total_chars += (int)strlen(argv[i]);
   }
 
-  size_t spaces = (argc > 2) ? (size_t)(argc - 2) : 0; // spaces between arguments
-  size_t total_argc_len =  total_chars + spaces + 1; // extras space for null-terminator
+  size_t spaces = (argc - join_start > 1) ? (size_t)(argc - join_start - 1) : 0; // spaces between arguments
+  size_t total_argc_len =  (size_t)total_chars + spaces + 1; // extras space for null-terminator
   
   char *joined_argc = malloc(total_argc_len);
   if (!joined_argc) {
@@ -77,7 +77,7 @@ int main(int argc, char *argv[]) { // input from terminal
   }
 
   char *p = joined_argc;
-  for (int i = 1; i < argc; i++) {
+  for (int i = join_start; i < argc; i++) {
     size_t l = strlen(argv[i]);
     memcpy(p, argv[i], l);
     p += l;
