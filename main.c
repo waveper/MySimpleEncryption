@@ -13,7 +13,7 @@ likely turn text into bitwise-notted hex
 
 // TODO: add the decoder
 
-char *to_bitwise(const char *input) {
+char *to_bitwise_hex(const char *input) {
   if (!input) return NULL; // if input was something not a thing, returm null
 
   size_t len = strlen(input); // getting length
@@ -35,7 +35,8 @@ char *to_bitwise(const char *input) {
 
 int main(int argc, char *argv[]) { // input from terminal
   if (argc < 2) {
-    fprintf(stderr, "Usage: %s <text-to-encode>\n", argv[0]);
+    fprintf(stderr, "Usage: %s <options> <text-to-encode>\n", argv[0]);
+    fprintf(stderr, "-d or --decode   decoding bitwised-not hex to text\n");
     return 1;
   }
 
@@ -61,13 +62,15 @@ int main(int argc, char *argv[]) { // input from terminal
     }
   }
 
-  char *encoded = to_bitwise(joined_argc);
+  char *encoded = to_bitwise_hex(joined_argc);
   if (!encoded) {
     fprintf(stderr, "Error: idk whats the cause\n");
     return 2;
   }
 
   printf("Output: %s\n", encoded);
+
   free(encoded); // free() my soul /j
+  free(joined_argc);
   return 0;
 }
