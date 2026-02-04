@@ -12,7 +12,10 @@ likely turn text into bitwise-notted hex
 
 // also this code is not entirely vibe-codded
 
-// TODO: add the decoder
+char *decode_to_text(const char *input) {
+  // TODO: implement the decoder
+  return NULL;
+}
 
 char *to_bitwise_hex(const char *input) {
   if (!input) return NULL; // if input was something not a thing, returm null
@@ -41,7 +44,18 @@ int main(int argc, char *argv[]) { // input from terminal
     return 1;
   }
 
-  // TODO: have an special argument like "-d" or "--decode" after i finished decoding function
+  // started working on parsing option flags
+  bool decode_mode = false;
+  int join_start = 1; // this is where the joining started
+
+  if (argc >= 2) {
+    if (strcmp(argv[1], "-d" == 0 || strcmp(argv[1], "--decode") == 0)) {
+      decode_mode = true;
+      join_start = 2;
+    }
+  }
+
+  // TODO: have an fully functioning special argument like "-d" or "--decode" after i finished decoding function
 
   // joining the command line arguments
   int total_chars = 0;
