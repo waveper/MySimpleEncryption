@@ -5,14 +5,14 @@ Not really.. just a Bitwise-NOT encoder
 Input from the terminal
 Output to the terminal
 
-"what about the decoder?(my toughts while im laying in bed)"
+"What about the decoder? (my thoughts while I'm lying in bed)"
 okay, just someday. I'll code that
-I'll add it in this todo list
+I'll add it to this to-do list
 
 ___TODO___
-Joining all the command line arguments without the user need to double quote every time (probability: 1 in 10000000000000000)
-Decoder (probability: 1 in 100000000000000000000000000000000000000000)
+Joining all the command line arguments without the user needing to double quote every time (probability: 1 in 10000000000000000)
+Decoder (probability: 1 in 1000000000000000000000000000000000000000)
 
-AANNnnndddddd, the actual Encryption!(xor encryption + bitwise-not encoder/decoder ofcourse) (probability l: 1 in 100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000)
+AANNnnndddddd, the actual Encryption!(xor encryption + bitwise-not encoder/decoder ofcourse) (probability: 1 in 100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000)
 
-this is all i could think
+This is all I could think of
