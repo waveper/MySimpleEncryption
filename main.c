@@ -4,14 +4,14 @@
 #include <stdlib.h>
 
 /*
-this is bitwise not encoder
+this is bitwise-not encoder(decoder later)
 input/output to the CLI
 likely turn text into bitwise-notted hex
 */
 
 // also this code is not entirely vibe-codded
 
-// TODO:.add the decoder
+// TODO: add the decoder
 
 char *to_bitwise(const char *input) {
   if (!input) return NULL; // if input was something not a thing, returm null
@@ -39,13 +39,13 @@ int main(int argc, char *argv[]) { // input from terminal
     return 1;
   }
 
+  // TODO: have an special argument like "-d" or "--decode" after i finished decoding function
+
   // joining the command line arguments
   int total_argc_len = 0;
   for (int i = 1; i < argc; i++) {
     total_argc_len += strlen(argv[i]) + 1; // extra space for null-terminator
   }
-
-  printf("Total arguments: %d\n", total_argc_len); // testing
   
   char *joined_argc = malloc(total_argc_len);
   if (!joined_argc) {
@@ -56,13 +56,12 @@ int main(int argc, char *argv[]) { // input from terminal
   joined_argc[0] = '\0'; // start as empty string
   for (int i = 1; i < argc; i++) {
     strcat(joined_argc, argv[i]);
+    if (i < argc - 1) {
+      strcat(joined_argc, " ");
+    }
   }
 
-  printf("Joined arguments: %s\n", joined_argc);
-
-  // TODO: joining all command line arguments without user need to double quoted it
-
-  char *encoded = to_bitwise(argv[1]);
+  char *encoded = to_bitwise(joined_argc);
   if (!encoded) {
     fprintf(stderr, "Error: idk whats the cause\n");
     return 2;
