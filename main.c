@@ -11,9 +11,11 @@ likely turn text into bitwise-notted hex
 
 // also this code is not entirely vibe-codded
 
+// TODO:.add the decoder
+
 char *to_bitwise(const char *input) {
   if (!input) return NULL; // if input was something not a thing, returm null
-;
+
   size_t len = strlen(input); // getting length
   size_t out_len = len * 2 + 1; // getting output length
 
@@ -50,6 +52,13 @@ int main(int argc, char *argv[]) { // input from terminal
     fprintf(stderr, "Error: failed join arguments malloc\n"); // finally, a reason ful error
     return 2;
   }
+
+  joined_argc[0] = '\0'; // start as empty string
+  for (int i = 1; i < argc; i++) {
+    strcat(joined_argc, argv[i]);
+  }
+
+  printf("Joined arguments: %s\n", joined_argc);
 
   // TODO: joining all command line arguments without user need to double quoted it
 
