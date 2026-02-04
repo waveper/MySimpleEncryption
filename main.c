@@ -31,12 +31,19 @@ char *to_bitwise(const char *input) {
   return output;
 }
 
-// all error are appearing for sure
 int main(int argc, char *argv[]) { // input from terminal
   if (argc < 2) {
     fprintf(stderr, "Usage: %s <text-to-encode>\n", argv[0]);
     return 1;
   }
+
+  // joining the command line arguments
+  int total_argc_len = 0;
+  for (int i = 1; i < argc; i++) {
+    total_argc_len += strlen(argv[i]) + 1; // extra space for null-terminator
+  }
+
+  printf("Total arguments: %d\n", total_argc_len); // testing
 
   // TODO: joining all command line arguments without user need to double quoted it
 
