@@ -2,6 +2,7 @@
 #include <stdint.h> // include
 #include <string.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 /*
 this is bitwise-not encoder(decoder later)
@@ -29,7 +30,6 @@ char *to_bitwise_hex(const char *input) {
   for (size_t i = 0; i < len; ++i) {
     unsigned char chari = (unsigned char)input[i];
     unsigned int bitwised = (~chari) & 0xFFu; // no idea, AI reccommend me this
-    
     snprintf(output + i * 2, 3, "%02X", bitwised); // the hell?
   }
   output[out_len - 1] = '\0'; // add null-terminator at the end
@@ -49,9 +49,13 @@ int main(int argc, char *argv[]) { // input from terminal
   int join_start = 1; // this is where the joining started
 
   if (argc >= 2) {
-    if (strcmp(argv[1], "-d" == 0 || strcmp(argv[1], "--decode") == 0)) {
+    if (strcmp(argv[1], "-d") == 0 || strcmp(argv[1], "--decode") == 0) {
       decode_mode = true;
       join_start = 2;
+      if (argc < 3) {
+        fprintf(stderr, "Error: no input to decode\n");
+        return 1;
+      }
     }
   }
 
