@@ -44,10 +44,13 @@ int main(int argc, char *argv[]) { // input from terminal
   // TODO: have an special argument like "-d" or "--decode" after i finished decoding function
 
   // joining the command line arguments
-  int total_argc_len = 0;
+  int total_chars = 0;
   for (int i = 1; i < argc; i++) {
-    total_argc_len += strlen(argv[i]) + 1; // extra space for null-terminator
+    total_chars += strlen(argv[i]);
   }
+
+  size_t spaces = (argc > 2) ? (size_t)(argc - 2) : 0; // spaces between arguments
+  size_t total_argc_len =  total_chars + spaces + 1; // extras space for null-terminator
   
   char *joined_argc = malloc(total_argc_len);
   if (!joined_argc) {
@@ -64,6 +67,7 @@ int main(int argc, char *argv[]) { // input from terminal
       *p++ = ' ';
     }
   }
+    *p = '\0'; // add null-terminator
 
   char *encoded = to_bitwise_hex(joined_argc);
   if (!encoded) {
