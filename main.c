@@ -3,9 +3,10 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <limits.h>
 
 /*
-this is bitwise-not encoder(decoder later)
+this is bitwise-not encoder
 it's not really a secure encryption function, but i will combine XOR encrytion for more security
 input/output to the CLI
 likely turn text into bitwise-notted hex
@@ -62,6 +63,7 @@ char *to_bitwise_hex(const char *input) {
   if (!input) return NULL; // if input was something not a thing, returm null
 
   size_t len = strlen(input); // getting length
+  if (len > (SIZE_MAX - 1) / 2) return NULL;
   size_t out_len = len * 2 + 1; // getting output length
 
   char *output = malloc(out_len);
@@ -99,16 +101,24 @@ int main(int argc, char *argv[]) { // input from terminal
     }
   }
 
-  // TODO: have an fully functioning special argument like "-d" or "--decode" after i finished decoding function
-
   // joining the command line arguments
-  int total_chars = 0;
+  size_t total_chars = 0;
   for (int i = join_start; i < argc; i++) {
-    total_chars += (int)strlen(argv[i]);
+    size_t l = strlen(argv[i]);
+    if (SIZE_MAX - total_chars < l) {
+      fprintf(stderr, "Error: input too large\n");
+      return 2;
+    }
+    total_chars += l;
   }
 
-  size_t spaces = (argc - join_start > 1) ? (size_t)(argc - join_start - 1) : 0; // spaces between arguments
-  size_t total_argc_len =  (size_t)total_chars + spaces + 1; // extras space for null-terminator
+  size_t args_count = (argc > join_start) ? (size_t)(argc - join_start) : 0;
+  size_t spaces = (args_count > 1) ? (args_count - 1) : 0; // spaces between arguments
+  if (SIZE_MAX - total_chars < spaces || SIZE_MAX - total_chars - spaces < 1) {
+    fprintf(stderr, "Error: input too large\n");
+    return 2;
+  }
+  size_t total_argc_len = total_chars + spaces + 1; // extras space for null-terminator
   
   char *joined_argc = malloc(total_argc_len);
   if (!joined_argc) {
