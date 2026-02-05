@@ -13,9 +13,49 @@ likely turn text into bitwise-notted hex
 
 // also this code is not entirely vibe-codded
 
+static int hex_value(unsigned char c) {
+  if (c >= '0' && c <= '9') return (int)(c - '0');
+  if (c >= 'a' && c <= 'f') return (int)(c - 'a') + 10;
+  if (c >= 'A' && c <= 'F') return (int)(c - 'A') + 10;
+  return -1;
+}
+
 char *decode_to_text(const char *input) {
-  // TODO: implement the decoder
-  return NULL;
+  if (!input) return NULL;
+
+  size_t hex_count = 0;
+  for (const unsigned char *p = (const unsigned char *)input; *p; ++p) {
+    if (*p == ' ') continue;
+    if (hex_value(*p) < 0) return NULL;
+    hex_count++;
+  }
+
+  if (hex_count % 2 != 0) return NULL;
+  size_t out_len = hex_count / 2;
+  char *output = malloc(out_len + 1);
+  if (!output) return NULL;
+
+  size_t out_i = 0;
+  int high = -1;
+  for (const unsigned char *p = (const unsigned char *)input; *p; ++p) {
+    if (*p == ' ') continue;
+    int v = hex_value(*p);
+    if (v < 0) {
+      free(output);
+      return NULL;
+    }
+    if (high < 0) {
+      high = v;
+    } else {
+      unsigned char byte = (unsigned char)((high << 4) | v);
+      unsigned char decoded = (unsigned char)((~byte) & 0xFFu);
+      output[out_i++] = (char)decoded;
+      high = -1;
+    }
+  }
+
+  output[out_i] = '\0';
+  return output;
 }
 
 char *to_bitwise_hex(const char *input) {
@@ -87,16 +127,21 @@ int main(int argc, char *argv[]) { // input from terminal
   }
     *p = '\0'; // add null-terminator
 
-  char *encoded = to_bitwise_hex(joined_argc);
-  if (!encoded) {
-    fprintf(stderr, "Error: idk whats the cause\n");
+  char *result = NULL;
+  if (decode_mode) {
+    result = decode_to_text(joined_argc);
+  } else {
+    result = to_bitwise_hex(joined_argc);
+  }
+  if (!result) {
+    fprintf(stderr, "Error: invalid input or failed allocation\n");
     free(joined_argc);
     return 2;
   }
 
-  printf("Output: %s\n", encoded);
+  printf("Output: %s\n", result);
 
-  free(encoded); // free() my soul /j
+  free(result); // free() my soul /j
   free(joined_argc);
   return 0;
 }
