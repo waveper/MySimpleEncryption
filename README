@@ -5,13 +5,7 @@ Not really.. just a Bitwise-NOT encoder
 Input from the terminal
 Output to the terminal
 
-"What about the decoder? (my thoughts while I'm lying in bed)"
-okay, just someday. I'll code that
-I'll add it to this to-do list
-
 ___TODO___ (maybe next year)
-Decoder
-
-AANNnnndddddd, the actual Encryption!(xor encryption + bitwise-not encoder/decoder ofcourse) (probability: 1 in 1000000000000000000000000000000000000000000000000000)
+-- The actual Encryption! (xor encryption + bitwise-not encoder/decoder ofcourse) (probability: 1 in 1000000000000000000000000000000000000000000000000000)
 
 This is all I could think of
